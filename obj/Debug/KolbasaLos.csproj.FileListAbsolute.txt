@@ -17,3 +17,5 @@ C:\Users\Oleg\source\repos\KolbasaLos\KolbasaLos\obj\Debug\KolbasaLos.csproj.Gen
 C:\Users\Oleg\source\repos\KolbasaLos\KolbasaLos\obj\Debug\KolbasaLos.csproj.CoreCompileInputs.cache
 C:\Users\Oleg\source\repos\KolbasaLos\KolbasaLos\obj\Debug\KolbasaLos.exe
 C:\Users\Oleg\source\repos\KolbasaLos\KolbasaLos\obj\Debug\KolbasaLos.pdb
+C:\Users\Oleg\source\repos\KolbasaLos\KolbasaLos\obj\Debug\View\WindowNewRole.baml
+C:\Users\Oleg\source\repos\KolbasaLos\KolbasaLos\obj\Debug\View\WindowNewRole.g.cs
