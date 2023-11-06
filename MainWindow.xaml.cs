@@ -1,5 +1,11 @@
-﻿using System.Windows;
+﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Windows;
+using KolbasaLos.Helper;
+using KolbasaLos.Model;
 using KolbasaLos.View;
+using KolbasaLos.ViewModel;
 
 namespace KolbasaLos
 {
@@ -8,6 +14,7 @@ namespace KolbasaLos
     /// </summary>
     public partial class MainWindow : Window
     {
+        public static int IdEmployee { get; set; }
         public static int IdRole { get; set; }
         public MainWindow()
         {
