@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Windows;
-using KolbasaLos.Helper;
-using KolbasaLos.Model;
+﻿using System.Windows;
 using KolbasaLos.View;
-using KolbasaLos.ViewModel;
 
 namespace KolbasaLos
 {

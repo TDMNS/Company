@@ -57,6 +57,7 @@
     </ApplicationDefinition>
     <Compile Include="Helper\FindRole.cs" />
     <Compile Include="Helper\PersonDPO.cs" />
+    <Compile Include="Helper\RelayCommand.cs" />
     <Compile Include="ViewModel\PersonViewModel.cs" />
     <Compile Include="ViewModel\RoleViewModel.cs" />
     <Compile Include="Helper\FindPerson.cs" />
@@ -72,6 +73,10 @@
     <Compile Include="View\WindowRole.xaml.cs">
       <DependentUpon>WindowRole.xaml</DependentUpon>
     </Compile>
+    <Page Include="DictionaryApp.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

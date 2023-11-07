@@ -1,7 +1,4 @@
-﻿using KolbasaLos.Helper;
-using KolbasaLos.Model;
-using System;
-using System.Windows;
+﻿using System.Windows;
 
 namespace KolbasaLos.View
 {

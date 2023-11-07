@@ -21,3 +21,5 @@ C:\Users\Oleg\source\repos\KolbasaLos\KolbasaLos\obj\Debug\View\WindowNewRole.ba
 C:\Users\Oleg\source\repos\KolbasaLos\KolbasaLos\obj\Debug\View\WindowNewRole.g.cs
 C:\Users\Oleg\source\repos\KolbasaLos\KolbasaLos\obj\Debug\View\WindowNewEmployee.baml
 C:\Users\Oleg\source\repos\KolbasaLos\KolbasaLos\obj\Debug\View\WindowNewEmployee.g.cs
+C:\Users\Oleg\source\repos\KolbasaLos\KolbasaLos\obj\Debug\App.baml
+C:\Users\Oleg\source\repos\KolbasaLos\KolbasaLos\obj\Debug\DictionaryApp.baml

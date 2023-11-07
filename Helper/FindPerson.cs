@@ -1,5 +1,4 @@
-﻿using System;
-using KolbasaLos.Model;
+﻿using KolbasaLos.Model;
 
 namespace KolbasaLos.View
 {

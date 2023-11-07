@@ -1,53 +1,128 @@
 ﻿using KolbasaLos.Model;
 using KolbasaLos.ViewModel;
 using System;
+using System.ComponentModel;
+using System.Linq;
+using System.Runtime.CompilerServices;
 
 namespace KolbasaLos.Helper
 {
-    public class PersonDPO
+    /// <summary>
+    /// класс отображения данных по сотруднику
+    /// </summary>
+    public class PersonDpo : INotifyPropertyChanged
     {
+        /// <summary>
+        /// код сотрудника
+        /// </summary>
         public int Id { get; set; }
-        public string Role { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public DateTime Birthday { get; set; }
-        public PersonDPO() { }
-        public PersonDPO(int id, string role, string firstName, string lastName, DateTime birthday)
+        /// <summary>
+        /// должность сотрудника
+        /// </summary>
+        private string _roleName;
+        /// <summary>
+        /// должность сотрудника
+        /// </summary>
+        public string RoleName
+        {
+            get { return _roleName; }
+            set
+            {
+                _roleName = value;
+                OnPropertyChanged("RoleName");
+            }
+        }
+        /// <summary>
+        /// имя сотрудника
+        /// </summary>
+        private string firstName;
+        /// <summary>
+        /// имя сотрудника
+        /// </summary>
+        public string FirstName
+        {
+            get { return firstName; }
+            set
+            {
+                firstName = value;
+                OnPropertyChanged("FirstName");
+            }
+        }
+        /// <summary>
+        /// фамилия сотрудника
+        /// </summary>
+        private string lastName;
+        /// <summary>
+        /// фамилия сотрудника
+        /// </summary>
+        public string LastName
+        {
+            get { return lastName; }
+            set
+            {
+                lastName = value;
+                OnPropertyChanged("LastName");
+            }
+        }
+        /// <summary>
+        /// дата рождения сотрудника
+        /// </summary>
+        private DateTime birthday;
+        /// <summary>
+        /// дата рождения сотрудника
+        /// </summary>
+        public DateTime Birthday
+        {
+            get { return birthday; }
+            set
+            {
+                birthday = value;
+                OnPropertyChanged("Birthday");
+            }
+        }
+        public PersonDpo() { }
+        public PersonDpo(int id, string roleName, string firstName, string lastName, DateTime birthday)
         {
             this.Id = id;
-            this.Role = role;
+            this.RoleName = roleName;
             this.FirstName = firstName;
             this.LastName = lastName;
             this.Birthday = birthday;
         }
-
-        public PersonDPO CopyFromPerson(Person person)
+        /// <summary>
+        /// Метод поверхностного копирования
+        /// </summary>
+        /// <returns></returns>
+        public PersonDpo ShallowCopy()
         {
-            PersonDPO perDPO = new PersonDPO();
+            return (PersonDpo)this.MemberwiseClone();
+        }
+        /// <summary>
+        /// копирование данных из класса Person
+        /// </summary>
+        /// <param name="person"></param>
+        /// <returns></returns>
+        public PersonDpo CopyFromPerson(Person person)
+        {
+            PersonDpo perDpo = new PersonDpo();
             RoleViewModel vmRole = new RoleViewModel();
-            string role = string.Empty;
-            foreach (var r in vmRole.ListRole)
+            Role role = vmRole.ListRole.FirstOrDefault(r => r.Id == person.RoleId);
+
+            if (role != null)
             {
-                if (r.Id == person.RoleId)
-                {
-                    role = r.NameRole;
-                    break;
-                }
+                perDpo.Id = person.Id;
+                perDpo.RoleName = role.NameRole;
+                perDpo.FirstName = person.FirstName;
+                perDpo.LastName = person.LastName;
+                perDpo.Birthday = person.Birthday;
             }
-            if (role != string.Empty)
-            {
-                perDPO.Id = person.Id;
-                perDPO.Role = role;
-                perDPO.FirstName = person.FirstName;
-                perDPO.LastName = person.LastName;
-                perDPO.Birthday = person.Birthday;
-            }
-            return perDPO;
+            return perDpo;
         }
 
-        public PersonDPO ShallowCopy()
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = "")
         {
-            return (PersonDPO)this.MemberwiseClone();
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-    }
+    }
 }

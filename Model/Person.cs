@@ -12,8 +12,7 @@ namespace KolbasaLos.Model
         public string LastName { get; set; }
         public DateTime Birthday { get; set; }
         public Person() { }
-        public Person(int id, int roleId, string firstName,
-        string lastName, DateTime birthday)
+        public Person(int id, int roleId, string firstName, string lastName, DateTime birthday)
         {
             this.Id = id;
             this.RoleId = roleId;
@@ -22,13 +21,13 @@ namespace KolbasaLos.Model
             this.Birthday = birthday;
         }
 
-        public Person CopyFromPersonDPO(PersonDPO p)
+        public Person CopyFromPersonDPO(PersonDpo p)
         {
             RoleViewModel vmRole = new RoleViewModel();
             int roleId = 0;
             foreach (var r in vmRole.ListRole)
             {
-                if (r.NameRole == p.Role)
+                if (r.NameRole == p.RoleName)
                 {
                     roleId = r.Id;
                     break;
