@@ -12,7 +12,7 @@
             <Button Style="{StaticResource ButtonMenu}" Margin="10,10,5,10" Content="Редактировать" Height="25" Command="{Binding EditPerson}"/>
             <Button Style="{StaticResource ButtonMenu}" Content="Удалить" Height="25" Margin="10,10,5,10" Command="{Binding DeletePerson}"/>
         </StackPanel>
-        <ListView ItemsSource="{Binding ListPersonDpo}">
+        <ListView ItemsSource="{Binding ListPersonDpo}" SelectedItem="{Binding SelectedPersonDpo}">
             <ListView.View>
                 <GridView>
                     <GridView.Columns>
