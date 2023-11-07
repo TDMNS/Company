@@ -2,6 +2,7 @@
 using KolbasaLos.ViewModel;
 using System;
 using System.ComponentModel;
+using System.Globalization;
 using System.Linq;
 using System.Runtime.CompilerServices;
 
@@ -67,11 +68,11 @@ namespace KolbasaLos.Helper
         /// <summary>
         /// дата рождения сотрудника
         /// </summary>
-        private DateTime birthday;
+        private string birthday;
         /// <summary>
         /// дата рождения сотрудника
         /// </summary>
-        public DateTime Birthday
+        public string Birthday
         {
             get { return birthday; }
             set
@@ -81,7 +82,7 @@ namespace KolbasaLos.Helper
             }
         }
         public PersonDpo() { }
-        public PersonDpo(int id, string roleName, string firstName, string lastName, DateTime birthday)
+        public PersonDpo(int id, string roleName, string firstName, string lastName, string birthday)
         {
             this.Id = id;
             this.RoleName = roleName;
@@ -119,10 +120,21 @@ namespace KolbasaLos.Helper
             return perDpo;
         }
 
+        public static string GetStringBirthday(string birthday)
+        {
+            DateTime dateTime;
+            if (DateTime.TryParseExact(birthday, "M/d/yyyy h:mm:ss tt", CultureInfo.InvariantCulture, DateTimeStyles.None, out dateTime))
+            {
+                return dateTime.ToString("dd.MM.yyyy");
+            }
+            return DateTime.Now.ToString("dd.MM.yyyy");
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = "")
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-    }
+    }
+
 }

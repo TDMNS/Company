@@ -23,3 +23,6 @@ C:\Users\Oleg\source\repos\KolbasaLos\KolbasaLos\obj\Debug\View\WindowNewEmploye
 C:\Users\Oleg\source\repos\KolbasaLos\KolbasaLos\obj\Debug\View\WindowNewEmployee.g.cs
 C:\Users\Oleg\source\repos\KolbasaLos\KolbasaLos\obj\Debug\App.baml
 C:\Users\Oleg\source\repos\KolbasaLos\KolbasaLos\obj\Debug\DictionaryApp.baml
+C:\Users\Oleg\source\repos\KolbasaLos\KolbasaLos\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Oleg\source\repos\KolbasaLos\KolbasaLos\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Oleg\source\repos\KolbasaLos\KolbasaLos\obj\Debug\KolbasaLos.csproj.CopyComplete
