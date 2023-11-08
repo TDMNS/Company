@@ -1,4 +1,3 @@
-C:\Users\Oleg\source\repos\KolbasaLos\KolbasaLos\obj\Debug\KolbasaLos.csprojAssemblyReference.cache
 C:\Users\Oleg\source\repos\KolbasaLos\KolbasaLos\obj\Debug\MainWindow.g.cs
 C:\Users\Oleg\source\repos\KolbasaLos\KolbasaLos\obj\Debug\View\WindowEmployee.g.cs
 C:\Users\Oleg\source\repos\KolbasaLos\KolbasaLos\obj\Debug\View\WindowRole.g.cs
@@ -26,3 +25,8 @@ C:\Users\Oleg\source\repos\KolbasaLos\KolbasaLos\obj\Debug\DictionaryApp.baml
 C:\Users\Oleg\source\repos\KolbasaLos\KolbasaLos\bin\Debug\Newtonsoft.Json.dll
 C:\Users\Oleg\source\repos\KolbasaLos\KolbasaLos\bin\Debug\Newtonsoft.Json.xml
 C:\Users\Oleg\source\repos\KolbasaLos\KolbasaLos\obj\Debug\KolbasaLos.csproj.CopyComplete
+C:\Users\Oleg\source\repos\KolbasaLos\KolbasaLos\obj\Debug\KolbasaLos.csproj.AssemblyReference.cache
+C:\Users\Oleg\source\repos\KolbasaLos\KolbasaLos\bin\Debug\EntityFramework.dll
+C:\Users\Oleg\source\repos\KolbasaLos\KolbasaLos\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Oleg\source\repos\KolbasaLos\KolbasaLos\bin\Debug\EntityFramework.xml
+C:\Users\Oleg\source\repos\KolbasaLos\KolbasaLos\bin\Debug\EntityFramework.SqlServer.xml

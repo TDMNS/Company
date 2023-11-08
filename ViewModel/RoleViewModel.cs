@@ -5,10 +5,12 @@ using System.IO;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Windows;
+using System.Linq;
 using KolbasaLos.Helper;
 using KolbasaLos.Model;
 using KolbasaLos.View;
 using Newtonsoft.Json;
+using System.Runtime.Remoting.Contexts;
 
 namespace KolbasaLos.ViewModel
 {
@@ -18,8 +20,7 @@ namespace KolbasaLos.ViewModel
         /// <summary>
         /// коллекция должностей сотрудников
         /// </summary>
-        public ObservableCollection<Role> ListRole { get; set; } = new
-       ObservableCollection<Role>();
+        public ObservableCollection<Role> ListRole { get; set; } = new ObservableCollection<Role>();
         /// <summary>
         /// выбранная в списке должность
         /// </summary>
@@ -46,8 +47,27 @@ namespace KolbasaLos.ViewModel
         string _jsonRoles = String.Empty;
         public RoleViewModel()
         {
-            ListRole = LoadRole();
+            ListRole = new ObservableCollection<Role>();
+
+            // Загрузка данных по должностям сотрудников
+            ListRole = GetRoles();
         }
+        private ObservableCollection<Role> GetRoles()
+        {
+            using (var context = new CompanyEntities())
+            {
+                var query = from role in context.Roles
+                            orderby role.NameRole
+                            select role;
+                if (query.Count() != 0)
+                {
+                    foreach (var c in query)
+                        ListRole.Add(c);
+                }
+            }
+            return ListRole;
+        }
+
         #region command AddRole
         /// команда добавления новой должности
         private RelayCommand _addRole;
@@ -58,27 +78,37 @@ namespace KolbasaLos.ViewModel
                 return _addRole ??
                 (_addRole = new RelayCommand(obj =>
                 {
+                    Role newRole = new Role();
                     WindowNewRole wnRole = new WindowNewRole
                     {
                         Title = "Новая должность",
+                        DataContext = newRole,
                     };
-                    // формирование кода новой должности
-                    int maxIdRole = MaxId() + 1;
-                    Role role = new Role { Id = maxIdRole };
-                    wnRole.DataContext = role;
-                    if (wnRole.ShowDialog() == true)
+                    wnRole.ShowDialog();
+                    if (wnRole.DialogResult == true)
                     {
-                        ListRole.Add(role);
-                        SaveChanges(ListRole);
+                        using (var context = new CompanyEntities())
+                        {
+                            try
+                            {
+                                context.Roles.Add(newRole);
+                                context.SaveChanges();
+                                ListRole.Clear();
+                                ListRole = GetRoles();
+                            }
+                            catch (Exception ex)
+                            {
+                                MessageBox.Show("\nОшибка добавления данных!\n" +
+                ex.Message, "Предупреждение");
+                            }
+                        }
                     }
-                    SelectedRole = role;
-                },
-                (obj) => true));
+                }, (obj) => true));
             }
         }
         #endregion
         #region Command EditRole
-        /// команда редактирования должности
+        /// команда добавления новой должности
         private RelayCommand _editRole;
         public RelayCommand EditRole
         {
@@ -87,26 +117,43 @@ namespace KolbasaLos.ViewModel
                 return _editRole ??
                 (_editRole = new RelayCommand(obj =>
                 {
+                    Role editRole = SelectedRole;
                     WindowNewRole wnRole = new WindowNewRole
                     {
                         Title = "Редактирование должности",
+                        DataContext = editRole,
                     };
-                    Role role = SelectedRole;
-                    var tempRole = role.ShallowCopy();
-                    wnRole.DataContext = tempRole;
-                    if (wnRole.ShowDialog() == true)
+                    wnRole.ShowDialog();
+                    if (wnRole.DialogResult == true)
                     {
-                        // сохранение данных в оперативной памяти
-                        role.NameRole = tempRole.NameRole;
-                        SaveChanges(ListRole);
+                        using (var context = new CompanyEntities())
+                        {
+                            Role role = context.Roles.Find(editRole.Id);
+                            if (role.NameRole != editRole.NameRole)
+                                role.NameRole = editRole.NameRole.Trim();
+                            try
+                            {
+                                context.SaveChanges();
+                                ListRole.Clear();
+                                ListRole = GetRoles();
+                            }
+                            catch (Exception ex)
+                            {
+                                MessageBox.Show("\nОшибка редактирования данных!\n" + ex.Message, "Предупреждение");
+                            }
+                        }
                     }
-                }, (obj) => SelectedRole != null && ListRole.Count >
-               0));
+                    else
+                    {
+                        ListRole.Clear();
+                        ListRole = GetRoles();
+                    }
+                }, (obj) => SelectedRole != null && ListRole.Count > 0));
             }
         }
         #endregion
         #region DeleteRole
-        /// команда удаления должности
+        /// команда добавления новой должности
         private RelayCommand _deleteRole;
         public RelayCommand DeleteRole
         {
@@ -116,11 +163,27 @@ namespace KolbasaLos.ViewModel
                 (_deleteRole = new RelayCommand(obj =>
                 {
                     Role role = SelectedRole;
-                    MessageBoxResult result = MessageBox.Show("Удалить данные по должности: " + role.NameRole, "Предупреждение", MessageBoxButton.OKCancel, MessageBoxImage.Warning);
-                    if (result == MessageBoxResult.OK)
+                    using (var context = new CompanyEntities())
                     {
-                        ListRole.Remove(role);
-                        SaveChanges(ListRole);
+                        // Поиск в контексте удаляемого автомобиля
+                        Role delRole = context.Roles.Find(role.Id);
+                        if (delRole != null)
+                        {
+                            MessageBoxResult result = MessageBox.Show("Удалить данные по должности: " + delRole.NameRole, "Предупреждение", MessageBoxButton.OKCancel, MessageBoxImage.Warning);
+                            if (result == MessageBoxResult.OK)
+                            {
+                                try
+                                {
+                                    context.Roles.Remove(delRole);
+                                    context.SaveChanges();
+                                    ListRole.Remove(role);
+                                }
+                                catch (Exception ex)
+                                {
+                                    MessageBox.Show("\nОшибка удаления данных!\n" + ex.Message, "Предупреждение");
+                                }
+                            }
+                        }
                     }
                 }, (obj) => SelectedRole != null && ListRole.Count > 0));
             }

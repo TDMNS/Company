@@ -115,7 +115,7 @@ namespace KolbasaLos.Helper
                 perDpo.RoleName = role.NameRole;
                 perDpo.FirstName = person.FirstName;
                 perDpo.LastName = person.LastName;
-                perDpo.Birthday = person.Birthday;
+                //perDpo.Birthday = person.Birthday;
             }
             return perDpo;
         }

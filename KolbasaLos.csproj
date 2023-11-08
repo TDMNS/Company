@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -14,6 +15,8 @@
     <WarningLevel>4</WarningLevel>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -35,11 +38,20 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -58,6 +70,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="CompanyEntities.cs" />
     <Compile Include="Helper\FindRole.cs" />
     <Compile Include="Helper\PersonDPO.cs" />
     <Compile Include="Helper\RelayCommand.cs" />
@@ -75,6 +88,11 @@
     </Compile>
     <Compile Include="View\WindowRole.xaml.cs">
       <DependentUpon>WindowRole.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="_KolbasaLos_Model_CompanyEntitiesDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>_KolbasaLos_Model_CompanyEntitiesDataSet.xsd</DependentUpon>
     </Compile>
     <Page Include="DictionaryApp.xaml">
       <SubType>Designer</SubType>
@@ -132,9 +150,37 @@
     <None Include="DataModel\PersonData.json" />
     <None Include="DataModel\RoleData.json" />
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\App.datasource" />
+    <None Include="Properties\DataSources\CompanyEntities.datasource" />
+    <None Include="Properties\DataSources\KolbasaLos.Helper.FindRole.datasource" />
+    <None Include="Properties\DataSources\KolbasaLos.Helper.PersonDpo.datasource" />
+    <None Include="Properties\DataSources\KolbasaLos.Helper.RelayCommand.datasource" />
+    <None Include="Properties\DataSources\KolbasaLos.Model.Person.datasource" />
+    <None Include="Properties\DataSources\KolbasaLos.Model.Role.datasource" />
+    <None Include="Properties\DataSources\KolbasaLos.Properties.Resources.datasource" />
+    <None Include="Properties\DataSources\KolbasaLos.Properties.Settings.datasource" />
+    <None Include="Properties\DataSources\KolbasaLos.View.FindPerson.datasource" />
+    <None Include="Properties\DataSources\KolbasaLos.View.WindowEmployee.datasource" />
+    <None Include="Properties\DataSources\KolbasaLos.View.WindowNewEmployee.datasource" />
+    <None Include="Properties\DataSources\KolbasaLos.View.WindowNewRole.datasource" />
+    <None Include="Properties\DataSources\KolbasaLos.View.WindowRole.datasource" />
+    <None Include="Properties\DataSources\KolbasaLos.ViewModel.PersonViewModel.datasource" />
+    <None Include="Properties\DataSources\KolbasaLos.ViewModel.RoleViewModel.datasource" />
+    <None Include="Properties\DataSources\MainWindow.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="_KolbasaLos_Model_CompanyEntitiesDataSet.xsc">
+      <DependentUpon>_KolbasaLos_Model_CompanyEntitiesDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="_KolbasaLos_Model_CompanyEntitiesDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>_KolbasaLos_Model_CompanyEntitiesDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="_KolbasaLos_Model_CompanyEntitiesDataSet.xss">
+      <DependentUpon>_KolbasaLos_Model_CompanyEntitiesDataSet.xsd</DependentUpon>
     </None>
   </ItemGroup>
   <ItemGroup>
@@ -142,4 +188,12 @@
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>Данный проект ссылается на пакеты NuGet, отсутствующие на этом компьютере. Используйте восстановление пакетов NuGet, чтобы скачать их.  Дополнительную информацию см. по адресу: http://go.microsoft.com/fwlink/?LinkID=322105. Отсутствует следующий файл: {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
+  </Target>
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
 </Project>

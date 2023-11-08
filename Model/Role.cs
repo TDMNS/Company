@@ -1,12 +1,11 @@
-﻿using System.ComponentModel;
-using System.Runtime.CompilerServices;
+﻿using System.Collections.Generic;
 
 namespace KolbasaLos.Model
 {
     /// <summary>
     /// класс должность сотрудника
     /// </summary>
-    public class Role : INotifyPropertyChanged
+    public class Role
     {
         /// <summary>
         /// код должности
@@ -15,38 +14,14 @@ namespace KolbasaLos.Model
         /// <summary>
         /// наименование должности
         /// </summary>
-        private string nameRole;
-        /// <summary>
-        /// наименование должности
-        /// </summary>
-        public string NameRole
+        public string NameRole { get; set; }
+        public Role()
         {
-            get { return nameRole; }
-            set
-            {
-                nameRole = value;
-                OnPropertyChanged("NameRole");
-            }
-        }
-        public Role() { }
-        public Role(int id, string nameRole)
-        {
-            this.Id = id;
-            this.NameRole = nameRole;
+            this.Persons = new HashSet<Person>();
         }
         /// <summary>
-        /// Метод поверхностного копирования
+        /// коллекция Persons для связи с классом Person
         /// </summary>
-        /// <returns></returns>
-        public Role ShallowCopy()
-        {
-            return (Role)this.MemberwiseClone();
-        }
-        public event PropertyChangedEventHandler PropertyChanged;
-     
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = "")
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
+        public virtual ICollection<Person> Persons { get; set; }
     }
 }
