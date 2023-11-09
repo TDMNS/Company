@@ -1,6 +1,9 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\KolbasaLos",
+    "\\packages"
   ],
+  "SelectedNode": "\\KolbasaLos\\KolbasaLos.csproj",
   "PreviewInSolutionExplorer": false
 }
