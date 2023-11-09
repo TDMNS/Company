@@ -1,0 +1,11 @@
+C:\Users\Oleg\source\repos\KolbasaLos\BankAccount\bin\Debug\net6.0-windows\BankAccount.deps.json
+C:\Users\Oleg\source\repos\KolbasaLos\BankAccount\bin\Debug\net6.0-windows\BankAccount.dll
+C:\Users\Oleg\source\repos\KolbasaLos\BankAccount\bin\Debug\net6.0-windows\BankAccount.pdb
+C:\Users\Oleg\source\repos\KolbasaLos\BankAccount\obj\Debug\net6.0-windows\BankAccount.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Oleg\source\repos\KolbasaLos\BankAccount\obj\Debug\net6.0-windows\BankAccount.AssemblyInfoInputs.cache
+C:\Users\Oleg\source\repos\KolbasaLos\BankAccount\obj\Debug\net6.0-windows\BankAccount.AssemblyInfo.cs
+C:\Users\Oleg\source\repos\KolbasaLos\BankAccount\obj\Debug\net6.0-windows\BankAccount.csproj.CoreCompileInputs.cache
+C:\Users\Oleg\source\repos\KolbasaLos\BankAccount\obj\Debug\net6.0-windows\BankAccount.dll
+C:\Users\Oleg\source\repos\KolbasaLos\BankAccount\obj\Debug\net6.0-windows\refint\BankAccount.dll
+C:\Users\Oleg\source\repos\KolbasaLos\BankAccount\obj\Debug\net6.0-windows\BankAccount.pdb
+C:\Users\Oleg\source\repos\KolbasaLos\BankAccount\obj\Debug\net6.0-windows\ref\BankAccount.dll
